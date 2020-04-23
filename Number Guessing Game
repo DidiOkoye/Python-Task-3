@@ -1,0 +1,95 @@
+# Multi level Guessing Game
+
+import random
+
+# Game Instructions
+def game_instructions():
+    print('''           
+                    WELCOME TO DIDI'S NUMBER GUESSING GAME!
+In this game, there are 3 levels of difficulty: Easy, Medium and Hard.
+In the Easy level, you are to guess a number from 1 - 10, and you have a total of 6 guesses;
+In the Medium level, you are to guess a number from 1 - 20 and you have a total of 4 guesses;
+In the Hard level, you are to guess a number from 1 - 50 and you have a total of 3 guesses.
+         ''')
+
+    #user selects level of difficulty
+    game_difficulty = input('''Choose level of difficulty; 
+Enter E for Easy level, M for Medium level or H for Hard level: \n''').upper()
+    return game_difficulty
+
+guess_count = 0
+guess_chances = 0
+guess_level = game_instructions()
+
+# ensure user enters numbers only
+while True:
+    try:
+        # define attributes of Easy level
+        if guess_level == 'E':
+            mystery_number = random.randint(1, 10)
+            guess_count = 0
+            guess_chances = 6
+            # while loop
+            while guess_count < guess_chances:
+                guess = int(input('Guess: '))
+                # ensure user enters number from 1-10 only
+                if(guess > 10 or guess < 1):
+                    print('input a number from 1 to 10')
+                    continue
+                guess_count += 1
+                if guess == mystery_number:
+                    print('You got it right!')
+                    break
+                else:
+                    print('That was wrong!')
+                    print(f"You have {guess_chances - guess_count} guesses left")
+            else:
+                print('Game over!')
+
+        # define attributes of Medium Level
+        elif guess_level == 'M':
+            mystery_number = random.randint(1, 20)
+            guess_count = 0
+            guess_chances = 4
+            # while loop
+            while guess_count < guess_chances:
+                guess = int(input('Guess: '))
+                # ensure user enters numbers from 1-20 only
+                if (guess > 20 or guess < 1):
+                    print('input a number from 1 to 20')
+                    continue
+                guess_count += 1
+                if guess == mystery_number:
+                    print('You got it right!')
+                    break
+                else:
+                    print('That was wrong!')
+                    print(f"You have {guess_chances - guess_count} guesses left")
+            else:
+                print('Game over!')
+
+        # define attributes of Hard level
+        elif guess_level == 'H':
+            mystery_number = random.randint(1, 50)
+            guess_count = 0
+            guess_chances = 3
+            # while loop
+            while guess_count < guess_chances:
+                guess = int(input('Guess: '))
+                # ensure user enters numbers from 1-50 only
+                if (guess > 50 or guess < 1):
+                    print('input a number from 1 to 50')
+                    continue
+                guess_count += 1
+                if guess == mystery_number:
+                    print('You got it right!')
+                    break
+                else:
+                    print('That was wrong!')
+                    print(f"You have {guess_chances - guess_count} guesses left")
+            else:
+                print('Game over!')
+        break
+    # ensure user enters a number
+    except ValueError:
+        print('Please enter a number (integer)')
